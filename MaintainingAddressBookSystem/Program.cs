@@ -1,6 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 //Console.WriteLine("Hello, World!");
-
 using MaintainingAddressBook;
 
 public class Program
@@ -11,7 +10,7 @@ public class Program
         AddressBook addressBook = new AddressBook();
         Console.WriteLine("Please Enter the Information");
         bool check = true;
-        Console.WriteLine(" Enter the Zero to Stop The Execution 0\n Display The Information1\n Edit the Information 2\n Delete The Information 3\n");
+        Console.WriteLine(" Enter the Zero to Stop The Execution 0\n Display The Information1\n Edit the Information 2\n Delete The Information 3\n Add Data in the Dictionary 4\n");
 
         while (check)
         {
@@ -28,6 +27,10 @@ public class Program
                     Console.WriteLine("Enter the Name for Delete the Information");
                     string name1 = Console.ReadLine();
                     addressBook.DeletingContactINAddressBook(name1); break;
+                case 4:
+                    Console.WriteLine("Enter the Name for Adding data in Dictionary ");
+                    string dictionaryNameame = Console.ReadLine();
+                    addressBook.AddDictionary(dictionaryNameame); break;
                 case 0: check = false; break;
             }
 
