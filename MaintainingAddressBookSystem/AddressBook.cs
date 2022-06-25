@@ -44,9 +44,8 @@ namespace MaintainingAddressBook
         {
             foreach (var contact in addressBook)
             {
-                Console.WriteLine(contact.FirstName + " " + contact.LastName + " " + contact.Address + " " + contact.City + " " + contact.State + " " + contact.EmailAddress + " " + " " + contact.PostalCode + " " + contact.MobileNumber);
+                Console.WriteLine(contact.FirstName + " " + contact.LastName + " " + contact.Address + "" + contact.City + " " + contact.State + " " + contact.EmailAddress + " " + " " + contact.PostalCode + " " + contact.MobileNumber);
             }
         }
-
     }
 }
