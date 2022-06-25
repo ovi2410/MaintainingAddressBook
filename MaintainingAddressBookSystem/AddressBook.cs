@@ -11,8 +11,30 @@ namespace MaintainingAddressBook
         List<Contact> addressBook = new List<Contact>();
         public AddressBook()
         {
-            Console.WriteLine("Enter the Data");
-            Contact address = new Contact()
+            Contact address1 = new Contact()
+            {
+                FirstName = "Vijaya",
+                LastName = "Kumar",
+                Address = "Indranagar",
+                City = "Lucknow",
+                State = "Utter Pradesh",
+                EmailAddress = "vijay123@gmail.com",
+                PostalCode = 226021,
+                MobileNumber = 9721944611
+            };
+            Contact address2 = new Contact()
+            {
+                FirstName = "Arunita",
+                LastName = "Arya",
+                Address = "CSMT",
+                City = "Mumbai",
+                State = "Maharastra",
+                EmailAddress = "arun123@gmail.com",
+                PostalCode = 400008,
+                MobileNumber = 9721945611
+            };
+            Console.WriteLine("Enter the FirstName LastName Address City State Email postalCode mobile Number");
+            Contact address3 = new Contact()
             {
                 FirstName = Console.ReadLine(),
                 LastName = Console.ReadLine(),
@@ -23,7 +45,9 @@ namespace MaintainingAddressBook
                 PostalCode = Convert.ToInt32(Console.ReadLine()),
                 MobileNumber = Convert.ToInt64(Console.ReadLine())
             };
-            addressBook.Add(address);
+            addressBook.Add(address1);
+            addressBook.Add(address2);
+            addressBook.Add(address3);
         }
         public void AddContactToAddressBook(Contact contact)
         {
@@ -75,7 +99,19 @@ namespace MaintainingAddressBook
                 Display();
             }
         }
-
+        public void DeletingContactINAddressBook(string name)
+        {
+            Contact delete = new Contact();
+            foreach (var contact in addressBook)
+            {
+                if (contact.FirstName.Equals(name))
+                {
+                    delete = contact;
+                }
+            }
+            addressBook.Remove(delete);
+            Display();
+        }
 
     }
 }
