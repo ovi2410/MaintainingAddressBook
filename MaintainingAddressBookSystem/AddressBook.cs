@@ -9,11 +9,12 @@ namespace MaintainingAddressBook
     public class AddressBook
     {
         List<Contact> addressBook = new List<Contact>();
+        Dictionary<string, List<Contact>> dictionaryName = new Dictionary<string, List<Contact>>();
         public AddressBook()
         {
             Contact address1 = new Contact()
             {
-                FirstName = "Vijaya",
+                FirstName = "Vijay",
                 LastName = "Kumar",
                 Address = "Indranagar",
                 City = "Lucknow",
@@ -24,7 +25,7 @@ namespace MaintainingAddressBook
             };
             Contact address2 = new Contact()
             {
-                FirstName = "Arunita",
+                FirstName = "Arun",
                 LastName = "Arya",
                 Address = "CSMT",
                 City = "Mumbai",
@@ -112,6 +113,28 @@ namespace MaintainingAddressBook
             addressBook.Remove(delete);
             Display();
         }
-
+        public void AddDictionary(string name)
+        {
+            if (dictionaryName == null)
+            {
+                dictionaryName.Add(name, addressBook);
+            }
+            if (NameExists(name) == false)
+            {
+                dictionaryName.Add(name, addressBook);
+            }
+            Console.WriteLine(dictionaryName);
+        }
+        public bool NameExists(string name)
+        {
+            foreach (var data in dictionaryName.Keys)
+            {
+                if (data.Equals(name))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
