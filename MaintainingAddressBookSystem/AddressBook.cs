@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections;
 
 namespace MaintainingAddressBook
 {
@@ -15,25 +14,25 @@ namespace MaintainingAddressBook
         {
             Contact address1 = new Contact()
             {
-                FirstName = "Daya",
-                LastName = "Shanker",
-                Address = "RayRoad",
-                City = "Mumbai",
-                State = "Maharstra",
-                EmailAddress = "daya123@gmail.com",
-                PostalCode = 400009,
-                MobileNumber = 972174461
+                FirstName = "Sachin",
+                LastName = "Patil",
+                Address = "MgraodNashik",
+                City = "Nashik",
+                State = "Maharashtra",
+                EmailAddress = "sachin123@gmail.com",
+                PostalCode = 226026,
+                MobileNumber = 9721954611
             };
             Contact address2 = new Contact()
             {
-                FirstName = "Sameer",
-                LastName = "Arya",
-                Address = "CSMTR",
-                City = "Mumbai",
-                State = "Maharastra",
-                EmailAddress = "sameer123@gmail.com",
-                PostalCode = 400006,
-                MobileNumber = 9721955611
+                FirstName = "Pramila",
+                LastName = "Pratap",
+                Address = "Solapur",
+                City = "solapur",
+                State = "Maharashtra",
+                EmailAddress = "pramila123@gmail.com",
+                PostalCode = 400009,
+                MobileNumber = 9722945611
             };
             Console.WriteLine("Enter the FirstName LastName Address City State Email postalCode mobile Number");
             Contact address3 = new Contact()
@@ -62,11 +61,11 @@ namespace MaintainingAddressBook
                 Console.WriteLine(contact.FirstName + " " + contact.LastName + " " + contact.Address + " " + contact.City + " " + contact.State + " " + contact.EmailAddress + " " + " " + contact.PostalCode + " " + contact.MobileNumber);
             }
         }
-        public void EditContactInAddressBook(string contactName)
+        public void EditContactInAddressBook(string name)
         {
             foreach (var contact in addressBook)
             {
-                if (contact.FirstName.Equals(contactName))
+                if (contact.FirstName.Equals(name))
                 {
                     Console.WriteLine("Enter the Option To Update");
                     int option = Convert.ToInt32(Console.ReadLine());
@@ -124,7 +123,7 @@ namespace MaintainingAddressBook
             {
                 dictionaryName.Add(name, addressBook);
             }
-            Console.WriteLine(dictionaryName);
+
         }
         public void EditingDictionary(string name, string contactName)
         {
@@ -136,6 +135,18 @@ namespace MaintainingAddressBook
                     EditContactInAddressBook(contactName);
                 }
             }
+        }
+        public void DeleteDictionaryData(string name)
+        {
+            foreach (var data in dictionaryName)
+            {
+                if (data.Key.Equals(name))
+                {
+                    addressBook = data.Value;
+                    DeletingContactINAddressBook(name);
+                }
+            }
+            dictionaryName.Remove(name);
         }
         public bool NameExists(string name)
         {
@@ -150,3 +161,4 @@ namespace MaintainingAddressBook
         }
     }
 }
+
