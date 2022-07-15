@@ -18,4 +18,3 @@ namespace MaintainingAddressBook
         public long MobileNumber { get; set; }
     }
 }
-
