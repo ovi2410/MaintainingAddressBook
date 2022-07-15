@@ -8,204 +8,225 @@ namespace MaintainingAddressBook
 {
     public class AddressBook
     {
-        Contact contacts = new Contact();
-        List<Contact> addressBook = new List<Contact>();
-        Dictionary<string, List<Contact>> dictionaryName = new Dictionary<string, List<Contact>>();
-        Dictionary<string, string> cityPerson = new Dictionary<string, string>();
-        List<string> firstName = new List<string>();
-        List<string> cityState = new List<string>();
-        public AddressBook()
-        {
-            Contact address1 = new Contact()
+            Contact contacts = new Contact();
+            List<Contact> addressBook = new List<Contact>();
+            Dictionary<string, List<Contact>> dictionaryName = new Dictionary<string, List<Contact>>();
+            Dictionary<string, string> cityPerson = new Dictionary<string, string>();
+            const string FILE_PATH = @"C:\Users\DEEPAK\OneDrive\Desktop\rfp-161\MaintainingAddressBook\AddressBook.txt";
+            public AddressBook()
             {
-                FirstName = "Sachin",
-                LastName = "Patil",
-                Address = "MgroadNashik",
-                City = "Nashik",
-                State = "Maharashtra",
-                EmailAddress = "sachin123@gmail.com",
-                PostalCode = 226026,
-                MobileNumber = 9721954611
-            };
-            Contact address2 = new Contact()
-            {
-                FirstName = "Anuj",
-                LastName = "Pratap",
-                Address = "Haryana",
-                City = "Allahabad",
-                State = "Delhi",
-                EmailAddress = "pramod123@gmail.com",
-                PostalCode = 100009,
-                MobileNumber = 9722945611
-            };
-            //Console.WriteLine("Enter the FirstName LastName Address City State Email postalCode mobile Number");
-            //Contact address3 = new Contact()
-            //{
-            //    FirstName = Console.ReadLine(),
-            //    LastName = Console.ReadLine(),
-            //    Address = Console.ReadLine(),
-            //    City = Console.ReadLine(),
-            //    State = Console.ReadLine(),
-            //    EmailAddress = Console.ReadLine(),
-            //    PostalCode = Convert.ToInt32(Console.ReadLine()),
-            //    MobileNumber = Convert.ToInt64(Console.ReadLine())
-            //};
-            addressBook.Add(address1);
-            addressBook.Add(address2);
-            //addressBook.Add(address3);
-        }
-        public void AddContactToAddressBook(Contact contact)
-        {
-            addressBook.Add(contact);
-        }
-        public void Display()
-        {
-            foreach (var contact in addressBook)
-            {
-                Console.WriteLine(contact.FirstName + " " + contact.LastName + " " + contact.Address + " " + contact.City + " " + contact.State + " " + contact.EmailAddress + " " + " " + contact.PostalCode + " " + contact.MobileNumber);
-            }
-        }
-        public void EditContactInAddressBook(string name)
-        {
-            foreach (var contact in addressBook)
-            {
-                if (contact.FirstName.Equals(name))
+                Contact address1 = new Contact()
                 {
-                    Console.WriteLine("Enter the Option To Update");
-                    int option = Convert.ToInt32(Console.ReadLine());
-                    switch (option)
-                    {
-                        case 1:
-                            Console.WriteLine("Enter the FirstName to Update");
-                            contact.FirstName = Console.ReadLine(); break;
-                        case 2:
-                            Console.WriteLine("Enter the LastName to Update");
-                            contact.LastName = Console.ReadLine(); break;
-                        case 3:
-                            Console.WriteLine("Enter the Address to Update");
-                            contact.Address = Console.ReadLine(); break;
-                        case 4:
-                            Console.WriteLine("Enter the City to Update");
-                            contact.City = Console.ReadLine(); break;
-                        case 5:
-                            Console.WriteLine("Enter the State to Update");
-                            contact.State = Console.ReadLine(); break;
-                        case 6:
-                            Console.WriteLine("Enter the Email to Update");
-                            contact.EmailAddress = Console.ReadLine(); break;
-                        case 7:
-                            Console.WriteLine("Enter the Postal to Update");
-                            contact.PostalCode = Convert.ToInt32(Console.ReadLine()); break;
-                        case 8:
-                            Console.WriteLine("Enter the MobileNumber to Update");
-                            contact.MobileNumber = Convert.ToInt64(Console.ReadLine()); break;
-                    }
-                }
-                Display();
-            }
-        }
-        public void DeletingContactINAddressBook(string name)
-        {
-            Contact delete = new Contact();
-            foreach (Contact contact in addressBook)
-            {
-                if (contact.FirstName.Equals(name))
+                    FirstName = "Sachin",
+                    LastName = "Patil",
+                    Address = "MgroadNashik",
+                    City = "Nashik",
+                    State = "Maharashtra",
+                    EmailAddress = "sachin123@gmail.com",
+                    PostalCode = 226026,
+                    MobileNumber = 9721954611
+                };
+                Contact address2 = new Contact()
                 {
-                    addressBook.Remove(contact);
-                }
-            }
-            Display();
-        }
-        public void AddDictionary(string name)
-        {
-            if (dictionaryName == null)
-            {
-                dictionaryName.Add(name, addressBook);
-            }
-            if (NameExists(name) == false)
-            {
-                dictionaryName.Add(name, addressBook);
-            }
-        }
-        public void EditingDictionary(string name, string contactName)
-        {
-            foreach (var data in dictionaryName)
-            {
-                if (dictionaryName.Keys.Equals(name))
+                    FirstName = "Anuj",
+                    LastName = "Pratap",
+                    Address = "Haryana",
+                    City = "Allahabad",
+                    State = "Delhi",
+                    EmailAddress = "pramod123@gmail.com",
+                    PostalCode = 100009,
+                    MobileNumber = 9722945611
+                };
+                Console.WriteLine("Enter the FirstName LastName Address City State Email postalCode mobile Number");
+                Contact address3 = new Contact()
                 {
-                    addressBook = data.Value;
-                }
-                EditContactInAddressBook(contactName);
+                    FirstName = Console.ReadLine(),
+                    LastName = Console.ReadLine(),
+                    Address = Console.ReadLine(),
+                    City = Console.ReadLine(),
+                    State = Console.ReadLine(),
+                    EmailAddress = Console.ReadLine(),
+                    PostalCode = Convert.ToInt32(Console.ReadLine()),
+                    MobileNumber = Convert.ToInt64(Console.ReadLine())
+                };
+                addressBook.Add(address1);
+                addressBook.Add(address2);
+                addressBook.Add(address3);
             }
-        }
-        public void DeleteDictionaryData(string name)
-        {
-            foreach (var data in dictionaryName)
+            public void AddContactToAddressBook(Contact contact)
             {
-                if (data.Key.Equals(name))
-                {
-                    addressBook = data.Value;
-                    DeletingContactINAddressBook(name);
-                }
+                addressBook.Add(contact);
             }
-            dictionaryName.Remove(name);
-        }
-        public bool NameExists(string name)
-        {
-            foreach (var data in dictionaryName.Keys)
+            public void Display()
             {
-                if (data.Equals(name))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public void SearchingPersonInCity(string cityName)
-        {
-            foreach (var contact in addressBook)
-            {
-                if (contact.City.Equals(cityName))
+                foreach (var contact in addressBook)
                 {
                     Console.WriteLine(contact.FirstName + " " + contact.LastName + " " + contact.Address + " " + contact.City + " " + contact.State + " " + contact.EmailAddress + " " + " " + contact.PostalCode + " " + contact.MobileNumber);
                 }
             }
-        }
-        public void MaintingDictionaryWithCityAndPerson(string cityName)
-        {
-            cityPerson.Add("Ajay", "Basti");
-            cityPerson.Add("Vijay", "Basti");
-            cityPerson.Add("Raj", "Lucknow");
-            cityPerson.Add("Ritesh", "Allahabad");
-            cityPerson.Add("Aman", "Basti");
-            cityPerson.Add("Anuragh", "Banaras");
-            foreach (var contact in cityPerson)
+            public void EditContactInAddressBook(string name)
             {
-                if (contact.Value.Equals(cityName))
+                foreach (var contact in addressBook)
                 {
-                    Console.WriteLine(contact.Key + " " + contact.Value);
+                    if (contact.FirstName.Equals(name))
+                    {
+                        Console.WriteLine("Enter the Option To Update");
+                        int option = Convert.ToInt32(Console.ReadLine());
+                        switch (option)
+                        {
+                            case 1:
+                                Console.WriteLine("Enter the FirstName to Update");
+                                contact.FirstName = Console.ReadLine(); break;
+                            case 2:
+                                Console.WriteLine("Enter the LastName to Update");
+                                contact.LastName = Console.ReadLine(); break;
+                            case 3:
+                                Console.WriteLine("Enter the Address to Update");
+                                contact.Address = Console.ReadLine(); break;
+                            case 4:
+                                Console.WriteLine("Enter the City to Update");
+                                contact.City = Console.ReadLine(); break;
+                            case 5:
+                                Console.WriteLine("Enter the State to Update");
+                                contact.State = Console.ReadLine(); break;
+                            case 6:
+                                Console.WriteLine("Enter the Email to Update");
+                                contact.EmailAddress = Console.ReadLine(); break;
+                            case 7:
+                                Console.WriteLine("Enter the Postal to Update");
+                                contact.PostalCode = Convert.ToInt32(Console.ReadLine()); break;
+                            case 8:
+                                Console.WriteLine("Enter the MobileNumber to Update");
+                                contact.MobileNumber = Convert.ToInt64(Console.ReadLine()); break;
+                        }
+                    }
+                    Display();
                 }
             }
-        }
-        public void GetPhoneNumberByCity(string cityName)
-        {
-            foreach (var contact in addressBook)
+            public void DeletingContactINAddressBook(string name)
             {
-                if (contact.City.Equals(cityName))
+                Contact delete = new Contact();
+                foreach (Contact contact in addressBook)
                 {
-                    Console.WriteLine("Mobile Number is" + contact.MobileNumber);
+                    if (contact.FirstName.Equals(name))
+                    {
+                        addressBook.Remove(contact);
+                    }
+                }
+                Display();
+            }
+            public void AddDictionary(string name)
+            {
+                if (dictionaryName == null)
+                {
+                    dictionaryName.Add(name, addressBook);
+                }
+                if (NameExists(name) == false)
+                {
+                    dictionaryName.Add(name, addressBook);
                 }
             }
-        }
-        public void SortingCityAndState()
-        {
-            var result = this.addressBook.OrderBy(x => x.City).ToList();
-            foreach (var contact in result)
+            public void EditingDictionary(string name, string contactName)
             {
-                Console.WriteLine(contact.FirstName + " " + contact.LastName + " " + contact.Address + " " + contact.City + " " + contact.State + " " + contact.EmailAddress + " " + " " + contact.PostalCode + " " + contact.MobileNumber);
-
+                foreach (var data in dictionaryName)
+                {
+                    if (dictionaryName.Keys.Equals(name))
+                    {
+                        addressBook = data.Value;
+                    }
+                    EditContactInAddressBook(contactName);
+                }
             }
-        }
+            public void DeleteDictionaryData(string name)
+            {
+                foreach (var data in dictionaryName)
+                {
+                    if (data.Key.Equals(name))
+                    {
+                        addressBook = data.Value;
+                        DeletingContactINAddressBook(name);
+                    }
+                }
+                dictionaryName.Remove(name);
+            }
+            public bool NameExists(string name)
+            {
+                foreach (var data in dictionaryName.Keys)
+                {
+                    if (data.Equals(name))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            public void SearchingPersonInCity(string cityName)
+            {
+                foreach (var contact in addressBook)
+                {
+                    if (contact.City.Equals(cityName))
+                    {
+                        Console.WriteLine(contact.FirstName + " " + contact.LastName + " " + contact.Address + " " + contact.City + " " + contact.State + " " + contact.EmailAddress + " " + " " + contact.PostalCode + " " + contact.MobileNumber);
+                    }
+                }
+            }
+            public void MaintingDictionaryWithCityAndPerson(string cityName)
+            {
+                cityPerson.Add("Ajay", "Basti");
+                cityPerson.Add("Vijay", "Basti");
+                cityPerson.Add("Raj", "Lucknow");
+                cityPerson.Add("Ritesh", "Allahabad");
+                cityPerson.Add("Aman", "Basti");
+                cityPerson.Add("Anuragh", "Banaras");
+                foreach (var contact in cityPerson)
+                {
+                    if (contact.Value.Equals(cityName))
+                    {
+                        Console.WriteLine(contact.Key + " " + contact.Value);
+                    }
+                }
+            }
+            public void GetPhoneNumberByCity(string cityName)
+            {
+                foreach (var contact in addressBook)
+                {
+                    if (contact.City.Equals(cityName))
+                    {
+                        Console.WriteLine("Mobile Number is" + contact.MobileNumber);
+                    }
+                }
+            }
+            public void SortingByPersonName()
+            {
+                var result = this.addressBook.OrderBy(x => x.FirstName).ToList();
+                foreach (var contact in result)
+                {
+                    Console.WriteLine(contact.FirstName + " " + contact.LastName + " " + contact.Address + " " + contact.City + " " + contact.State + " " + contact.EmailAddress + " " + " " + contact.PostalCode + " " + contact.MobileNumber);
+                }
+            }
+            public void ReaderReadingFileUsingIO()
+            {
+                if (File.Exists(FILE_PATH))
+                {
+                    StreamReader read = new StreamReader(FILE_PATH);
+                    try
+                    {
+                        string s = "";
+                        while ((s = read.ReadLine()) != null)
+                        {
+                            Console.WriteLine(s);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+        
     }
+
 }
+
+    
 
