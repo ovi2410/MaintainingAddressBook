@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 //Console.WriteLine("Hello, World!");
 using System;
-
+using MaintainingAddressBook;
 public class Program
 {
     public static void Main(String[] args)
@@ -44,6 +44,10 @@ public class Program
                     Console.WriteLine("Enter the City Name for Searchin Person City in Dictionary ");
                     string cityName = Console.ReadLine();
                     addressBook.SearchingPersonInCity(cityName); break;
+                case 9:
+                    Console.WriteLine("Enter the City Name for Searchin Person City in Dictionary ");
+                    string city = Console.ReadLine();
+                    addressBook.MaintingDictionaryWithCityAndPerson(city); break;
                 case 0: check = false; break;
                 default: Console.WriteLine("Please Enter the Valid Option"); break;
             }
