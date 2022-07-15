@@ -29,7 +29,7 @@ namespace MaintainingAddressBook
             {
                 FirstName = "Pramila",
                 LastName = "Pratap",
-                Address = "solapur",
+                Address = "Solapur",
                 City = "Solapur",
                 State = "Maharashtra",
                 EmailAddress = "pramila123@gmail.com",
@@ -47,10 +47,10 @@ namespace MaintainingAddressBook
             //    EmailAddress = Console.ReadLine(),
             //    PostalCode = Convert.ToInt32(Console.ReadLine()),
             //    MobileNumber = Convert.ToInt64(Console.ReadLine())
-            //};           
+            //};
             addressBook.Add(address1);
             addressBook.Add(address2);
-            // addressBook.Add(address3);
+            //addressBook.Add(address3);
         }
         public void AddContactToAddressBook(Contact contact)
         {
@@ -102,7 +102,7 @@ namespace MaintainingAddressBook
                 Display();
             }
         }
-        public void DeletingContactINAddressBook(string name) //vinay
+        public void DeletingContactINAddressBook(string name)
         {
             Contact delete = new Contact();
             foreach (Contact contact in addressBook)
@@ -124,7 +124,6 @@ namespace MaintainingAddressBook
             {
                 dictionaryName.Add(name, addressBook);
             }
-
         }
         public void EditingDictionary(string name, string contactName)
         {
@@ -186,5 +185,16 @@ namespace MaintainingAddressBook
                 }
             }
         }
+        public void GetPhoneNumberByCity(string cityName)
+        {
+            foreach (var contact in addressBook)
+            {
+                if (contact.City.Equals(cityName))
+                {
+                    Console.WriteLine("Mobile Number is" + contact.MobileNumber);
+                }
+            }
+        }
     }
 }
+
