@@ -1,8 +1,13 @@
-﻿using System;
+﻿using CsvHelper;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace MaintainingAddressBook
 {
@@ -14,6 +19,7 @@ namespace MaintainingAddressBook
         Dictionary<string, string> cityPerson = new Dictionary<string, string>();
 
         const string FILE_PATH = @"C:\Users\DEEPAK\OneDrive\Desktop\rfp-161\MaintainingAddressBookSystem\AddressBook.txt";
+        const string EXPORT_JSON_FILE_PATH = @"C:\Users\DEEPAK\OneDrive\Desktop\rfp-161\MaintainingAddressBookSystem\addressBook.json";
         const string IMPORT_CSV_FILE_PATH = @"C:\Users\DEEPAK\OneDrive\Desktop\rfp-161\MaintainingAddressBookSystem\addressBook.csv";
         const string EXPORT_CSV_FILE_PATH = @"C:\Users\DEEPAK\OneDrive\Desktop\rfp-161\MaintainingAddressBookSystem\addressBookExport.csv";
         public AddressBook()
@@ -201,7 +207,7 @@ namespace MaintainingAddressBook
         }
         public void SortingByPersonName()
         {
-            var result = addressBook.OrderBy(x => x.FirstName).ToList();
+            var result = this.addressBook.OrderBy(x => x.FirstName).ToList();
             foreach (var contact in result)
             {
                 Console.WriteLine(contact.FirstName + " " + contact.LastName + " " + contact.Address + " " + contact.City + " " + contact.State + " " + contact.EmailAddress + " " + " " + contact.PostalCode + " " + contact.MobileNumber);
@@ -249,6 +255,28 @@ namespace MaintainingAddressBook
                 }
             }
         }
+        public void ReadingDataFromCSVAndWritingDataIntoJSONFile()
+        {
+            using (var reader = new StreamReader(IMPORT_CSV_FILE_PATH))
+            {
+                using (var Csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    var records = Csv.GetRecords<Contact>().ToList();
+                    foreach (var contact in records)
+                    {
+                        Console.WriteLine(contact.FirstName + " " + contact.LastName + " " + contact.Address + " " + contact.City + " " + contact.State + " " + contact.EmailAddress + " " + " " + contact.PostalCode + " " + contact.MobileNumber);
+                    }
+                    JsonSerializer serializer = new JsonSerializer();
+                    using (var writer = new StreamWriter(EXPORT_JSON_FILE_PATH))
+                    {
+                        using (var jsonWriter = new JsonTextWriter(writer))
+                        {
+                            serializer.Serialize(writer, records);
+
+                        }
+                    }
+                }
+            }
+        }
     }
 }
-
